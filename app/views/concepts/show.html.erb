@@ -8,13 +8,13 @@
 
   <div class="course-options">
     <div class="button-wrapper">
-      <a href="#" class="course-btn">顯示講義</a>
+      <%= link_to("顯示講義", @concept.lecture.url, class: "course-btn") %>
     </div>
     <div class="button-wrapper">
       <a href="#" class="course-btn">選擇理解度</a>
     </div>
     <div class="button-full-wrapper">
-      <%= link_to test_path, class: "course-btn" do %>
+      <%= link_to concept_tests_path(@concept), class: "course-btn" do %>
         開始自我挑戰！
       <% end %>
     </div>

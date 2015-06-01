@@ -1,13 +1,21 @@
 class Concept < ActiveRecord::Base
+  belongs_to :target_course
 	belongs_to :subject
 	belongs_to :volume
 	belongs_to :chapter
+  has_many :tests
+  
+  validates :subject_id, :target_course_id, :volume_number, :chapter_id, :title, :description, :video, presence: true
+  mount_uploader :lecture, LectureUploader
 end
 
 
 RailsAdmin.config do |config| 
 	config.model 'Concept' do
 		edit do
+      field :target_course do
+        label "選擇所屬課程對象"
+      end
 			field :subject do
       	label "選擇所屬科目"
       end
@@ -23,12 +31,15 @@ RailsAdmin.config do |config|
       field :description do
       	label "觀念敘述"
       end
+      field :lecture do
+        label "講義"
+      end
       field :video do
       	label "影片連結"
       end
 		end
 
-		weight 3  # for nav order 
+		weight 4  # for nav order 
 	end
 end
 

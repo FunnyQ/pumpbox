@@ -1,6 +1,7 @@
 class Chapter < ActiveRecord::Base
 	belongs_to :subject
 	has_many :concepts
+  validates :subject_id, :volume_number, :title, :description, presence: true
 end
 
 
@@ -21,6 +22,6 @@ RailsAdmin.config do |config|
       end
 		end
 
-		weight 2 # for nav order 
+		weight 3 # for nav order 
 	end
 end
